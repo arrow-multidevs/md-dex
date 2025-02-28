@@ -1,10 +1,15 @@
+import type { IgnitionModule } from '@nomicfoundation/ignition-core';
 import { buildModule } from '@nomicfoundation/hardhat-ignition/modules';
 
-// Define the deployment module for the Arrow token
-export default buildModule('DeployArrow', (m) => {
+// Provide an explicit type for the exported module.
+// If you have a generated type for the Arrow contract (say, Arrow),
+// you can use that instead of unknown.
+const deployArrowModule: IgnitionModule = buildModule('DeployArrow', (m) => {
   // Deploy the Arrow contract
   const arrow = m.contract('Arrow');
 
   // Return the deployed contract instance
   return { arrow };
 });
+
+export default deployArrowModule;
