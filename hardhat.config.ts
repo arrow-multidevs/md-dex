@@ -1,4 +1,4 @@
-import { HardhatUserConfig } from "hardhat/config";
+import {HardhatUserConfig, vars} from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox";
 
 const config: HardhatUserConfig = {
@@ -20,8 +20,8 @@ const config: HardhatUserConfig = {
   gasReporter: {
     enabled: true,
     currency: "USD",
-    coinmarketcap: process.env.COINMARKETCAP_API_KEY, // Optional: Add your CoinMarketCap API key for real-time gas prices
-    L1Etherscan: process.env.ETHERSCAN_API_KEY, // Replace with your Etherscan API key
+    coinmarketcap: vars.get('COINMARKETCAP_API_KEY'), // Optional: Add your CoinMarketCap API key for real-time gas prices
+    L1Etherscan: vars.get('ETHERSCAN_API_KEY'), // Replace with your Etherscan API key
   }
 }
 
@@ -39,7 +39,7 @@ const config: HardhatUserConfig = {
   networks: {
     sepolia: {
       url: "https://eth-mainnet.g.alchemy.com/v2/m-754689ST6_xvTzXZd9ApaggUHpTZVr",
-      accounts: [process.env.PRIVATE_KEY],
+      accounts: [vars.get('WALLET_PRIVATE_KEY')],
     },
   },
   paths: {
