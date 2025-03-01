@@ -38,7 +38,7 @@ const config: HardhatUserConfig = {
   },
   networks: {
     sepolia: {
-      url: "https://eth-mainnet.g.alchemy.com/v2/m-754689ST6_xvTzXZd9ApaggUHpTZVr",
+      url: `https://eth-mainnet.g.alchemy.com/v2/${vars.get('ALCHEMY_API_KEY')}`,
       accounts: [vars.get('WALLET_PRIVATE_KEY')],
     },
   },

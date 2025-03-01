@@ -4,7 +4,6 @@ pragma solidity ^0.8.20;
 import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/security/Pausable.sol";
-// import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
 contract Multi is ERC20Permit, Ownable, Pausable {
     uint256 public constant MAX_SUPPLY = 100000e18;

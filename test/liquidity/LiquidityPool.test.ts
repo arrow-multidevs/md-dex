@@ -252,46 +252,38 @@ describe("LiquidityPool", () => {
         
           // Add initial liquidity
           await pool.connect(addr1).addLiquidity(parseEther("1000"), parseEther("2000"));
-        
-          // Perform multiple swaps
+
+          // SWAPPING
           const swapAmounts = [parseEther("10"), parseEther("20"), parseEther("15"), parseEther("5"), parseEther("8")];
           const initialReserve0 = await pool.reserve0();
           const initialReserve1 = await pool.reserve1();
-        
+
           for (let i = 0; i < swapAmounts.length; i++) {
-            // Ensure addr1 has enough tokens for the swap
-            const arrowBalance = await arrow.balanceOf(addr1.address);
-            if (arrowBalance < swapAmounts[i]) {
-              throw new Error("Insufficient arrow balance for swap");
-            }
-        
-            await arrow.connect(addr1).approve(await pool.getAddress(), swapAmounts[i]);
-            await pool.connect(addr1).swap(true, swapAmounts[i], parseEther("1"), addr1.address);
+              const amountIn = swapAmounts[i];
+
+              await arrow.connect(addr1).approve(await pool.getAddress(), amountIn);
+              await pool.connect(addr1).swap(true, amountIn, parseEther("1"), addr1.address);
           }
-        
-          // Check final reserves
+
           const finalReserve0 = await pool.reserve0();
           const finalReserve1 = await pool.reserve1();
-        
-          console.log("finalReserve0", finalReserve0);
-          console.log("finalReserve1", finalReserve1);
-        
-          // Calculate expected reserves with fees
+
+          // Calculate expected reserves with correct fee application
           let expectedReserve0 = initialReserve0;
           let expectedReserve1 = initialReserve1;
-        
+
           for (let i = 0; i < swapAmounts.length; i++) {
-            const amountIn = swapAmounts[i];
-            const amountOut = await pool.getAmountOut(amountIn, expectedReserve0, expectedReserve1);
-            const fee = amountIn * 3n / 1000n; // Convert 3 and 1000 to bigint
-            expectedReserve0 += amountIn - fee;
-            expectedReserve1 -= amountOut;
+              const amountIn = swapAmounts[i];
+              const amountOut = await pool.getAmountOut(amountIn, expectedReserve0, expectedReserve1);
+
+              expectedReserve0 += amountIn;
+              expectedReserve1 -= amountOut;
           }
-        
+
           // Use precise expected values
           expect(finalReserve0).to.equal(expectedReserve0);
           expect(finalReserve1).to.equal(expectedReserve1);
-        });
+      });
     });
 
   describe("Reentrancy Check", () => {
