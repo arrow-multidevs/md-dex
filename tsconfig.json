@@ -8,7 +8,11 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "outDir": "dist",
-    "declaration": true
+    "declaration": true,
+    "paths": {
+      "@contracts": ["./contracts"],
+      "@interfaces": ["./interfaces"],
+    }
   },
   "include": ["./test", "./typechain-types"],
   "files": ["./hardhat.config.ts"]
