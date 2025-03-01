@@ -1,11 +1,11 @@
-// test/gas/Arrow.gas.test.ts
+// test/gas/ArrowSep.sol.gas.test.ts
 import { expect } from "chai";
 import { ethers } from "hardhat";
 import { Arrow } from "../../typechain-types";
 
 const CONTRACT_ADDRESS = "0x5FbDB2315678afecb367f032d93F642f64180aa3"; // Update with your deployed address
 
-describe("Gas Efficiency - Arrow Token (Existing Deployment)", () => {
+describe("Gas Efficiency - ArrowSep.sol Token (Existing Deployment)", () => {
   let arrow: Arrow;
   let owner: any;
   let addr1: any;

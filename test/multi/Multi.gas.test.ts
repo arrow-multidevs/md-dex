@@ -1,4 +1,4 @@
-// test/gas/Arrow.gas.test.ts
+// test/gas/ArrowSep.sol.gas.test.ts
 import { expect } from "chai";
 import { ethers } from "hardhat";
 import { Multi } from "../../typechain-types";

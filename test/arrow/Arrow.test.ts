@@ -205,7 +205,7 @@ describe("ArrowToken", function () {
     });
 
     it("Has correct metadata", async () => {
-        expect(await arrow.name()).to.equal("Arrow Token");
+        expect(await arrow.name()).to.equal("ArrowSep.sol Token");
         expect(await arrow.symbol()).to.equal("ARR");
     });
 

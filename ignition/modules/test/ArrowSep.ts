@@ -4,12 +4,12 @@ import { buildModule } from '@nomicfoundation/hardhat-ignition/modules';
 // Provide an explicit type for the exported module.
 // If you have a generated type for the ArrowSep.sol contract (say, ArrowSep.sol),
 // you can use that instead of unknown.
-const deployArrowModule: IgnitionModule = buildModule('DeployMulti', (m) => {
+const deployArrowSepModule: IgnitionModule = buildModule('DeployArrowSep', (m) => {
   // Deploy the ArrowSep.sol contract
-  const multi = m.contract('Multi');
+  const arrow = m.contract('ArrowSep');
 
   // Return the deployed contract instance
-  return { multi };
+  return { arrow };
 });
 
-export default deployArrowModule;
+export default deployArrowSepModule;
