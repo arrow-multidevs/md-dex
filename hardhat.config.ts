@@ -15,12 +15,13 @@ const config: HardhatUserConfig = {
     sepolia: {
       // url: `https://eth-mainnet.g.alchemy.com/v2/${vars.get('ALCHEMY_API_KEY')}`,
       url: `https://eth-sepolia.g.alchemy.com/v2/${vars.get('ALCHEMY_API_KEY')}`,
-      accounts: [vars.get('WALLET_ARROW_PRIVATE_KEY')],
+      // accounts: [vars.get('WALLET_ARROW_PRIVATE_KEY')],
+      accounts: [vars.get('WALLET_HARIS_PRIVATE_KEY')],
     },
   },
   ignition: {
     strategyConfig: {
-      create2: { salt: "0x2b8e5e5a4f8a1b9c3d2e6f7e8f9d1c2e3f4d5b6c7d8e9f0a1b2c3d4e5f6a8c9d" },
+      create2: { salt: "0x2b8e5e5a4g7b1b9c3d2e6f7e8f9d1c2e3f4d5b6c7d8e9f0a1b2c3d4e5f7b7d8e" },
     }
   },
   sourcify: {
